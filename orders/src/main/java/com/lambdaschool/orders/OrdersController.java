@@ -34,12 +34,41 @@ public class OrdersController {
         return agentrepos.findAll();
     }
 
+    @GetMapping("/agents/agentcode/{agentcode}")
+    public Agent findagentId(@PathVariable long agentcode) {
+        var foundAgent = agentrepos.findById(agentcode);
+        if (foundAgent.isPresent()) {
+            return foundAgent.get();
+        } else {
+            return null;
+        }
+    }
+
+    @PostMapping("/agents")
+    public Agent addAgent(@RequestBody Agent agent) throws URISyntaxException {
+        return agentrepos.save(agent);
+    }
+
+    @DeleteMapping("/agents/agentcode/{agentcode}")
+    public Agent deleteAgent(@PathVariable long agentcode) {
+        var foundAgent = agentrepos.findById(agentcode);
+        if (foundAgent.isPresent()) {
+            agentrepos.deleteById(agentcode);
+            return foundAgent.get();
+        } else {
+            return null;
+        }
+    }
+
     // Customer
+
+    // Working
     @GetMapping("/customers")
     public List<Customer> findcust() {
         return custrepos.findAll();
     }
 
+    // Working
     @GetMapping("/customers/custcode/{custcode}")
     public Customer findcustId(@PathVariable long custcode) {
         var foundCust = custrepos.findById(custcode);
@@ -59,7 +88,7 @@ public class OrdersController {
     public Customer changeCust(@RequestBody Customer newcust, @PathVariable long custcode) throws URISyntaxException {
         Optional<Customer> updateCust = custrepos.findById(custcode);
         if (updateCust.isPresent()) {
-           newcust.setId(custcode);
+           newcust.setCustcode(custcode);
            custrepos.save(newcust);
 
            return newcust;
@@ -68,6 +97,7 @@ public class OrdersController {
         }
     }
 
+    // Working
     @DeleteMapping("/customers/custcode/{custcode}")
     public Customer deleteCustomer(@PathVariable long custcode) {
         var foundCust = custrepos.findById(custcode);
@@ -80,9 +110,28 @@ public class OrdersController {
     }
 
     // Order
+
+    // Working
     @GetMapping("/orders")
     public List<Order> findorder() {
         return ordrepos.findAll();
     }
 
+    @PostMapping("/orders")
+    public Order addOrder(@RequestBody Order order) throws URISyntaxException {
+        return ordrepos.save(order);
+    }
+
+    // Working
+    // why did ordernum not work but ordnum did? for the endpoint
+    @DeleteMapping("/orders/ordnum/{ordnum}")
+    public Order deleteOrder(@PathVariable long ordnum) {
+        var foundOrder = ordrepos.findById(ordnum);
+        if (foundOrder.isPresent()) {
+          ordrepos.deleteById(ordnum);
+          return foundOrder.get();
+        } else {
+            return null;
+        }
+    }
 }

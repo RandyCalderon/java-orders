@@ -1,9 +1,6 @@
 package com.lambdaschool.orders.models;
 
-import lombok.Data;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 
@@ -35,6 +32,10 @@ public class Agent {
 
     public Agent() {
 
+    }
+
+    public void setAgentcode(long agentcode) {
+        this.agentcode = agentcode;
     }
 
     public long getAgentcode() {

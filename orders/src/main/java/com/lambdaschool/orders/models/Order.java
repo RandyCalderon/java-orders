@@ -19,17 +19,19 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "custcode", nullable = false)
-    @JsonIgnore
     private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "agentcode", nullable = false)
-    @JsonIgnore
     private Agent agent;
 
     private String orddescription;
 
     public Order() {}
+
+    public void setOrdernum(long ordernum) {
+        this.ordernum = ordernum;
+    }
 
     public long getOrdernum() {
         return ordernum;

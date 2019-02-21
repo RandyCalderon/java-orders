@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 
@@ -37,9 +36,8 @@ public class Customer {
 
     private String phone;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "agentcode", nullable = false)
-    @JsonIgnore
     private Agent agent;
 
     @OneToMany( cascade = CascadeType.DETACH, mappedBy = "customer")
@@ -47,6 +45,10 @@ public class Customer {
 
     public Customer() {
 
+    }
+
+    public void setCustcode(long custcode) {
+        this.custcode = custcode;
     }
 
     public long getCustcode() {

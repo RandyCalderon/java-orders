@@ -1,0 +1,18 @@
+POST http://localhost:8080/customers/custcode/{custcode}
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"custname": "Cook", "custcity": "Palm", "workingarea: "Palm", grade: "3", openingamt: 4000, receiveamt: 12000, paymentamt: 12000; outstandingamt: 2000, phone: "adadadada"}
+
+###
+
+GET http://localhost:8080/customers
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+<> 2019-02-21T115203.200.json
+
+###
+
