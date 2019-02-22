@@ -84,11 +84,11 @@ public class OrdersController {
         return custrepos.save(customer);
     }
 
-    @PutMapping("/customers/custocode/{custcode}")
-    public Customer changeCust(@RequestBody Customer newcust, @PathVariable long custcode) throws URISyntaxException {
-        Optional<Customer> updateCust = custrepos.findById(custcode);
+    @PutMapping("/customers/custcode/{cust}")
+    public Customer updateCust(@RequestBody Customer newcust, @PathVariable long cust) throws URISyntaxException {
+        Optional<Customer> updateCust = custrepos.findById(cust);
         if (updateCust.isPresent()) {
-           newcust.setCustcode(custcode);
+           newcust.setCustcode(cust);
            custrepos.save(newcust);
 
            return newcust;
